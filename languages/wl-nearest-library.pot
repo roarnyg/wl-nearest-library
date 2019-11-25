@@ -1,0 +1,78 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WL Nearest Library\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-25 16:27+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.2.4"
+
+#: WLNearestLibrary.class.php:85
+msgid ""
+"Could not download the libriaries.xml file containing the locations of "
+"libraries. See the error log for details"
+msgstr ""
+
+#: WLNearestLibrary.class.php:22
+msgid "Dynamic string"
+msgstr ""
+
+#: WLNearestLibrary.class.php:112
+msgid ""
+"Enter your Google Maps GeoLocation API key. Can be the same as the above if "
+"you have activated the geolocation API for that key"
+msgstr ""
+
+#: WLNearestLibrary.class.php:105
+msgid "Enter your Google Maps key."
+msgstr ""
+
+#. Description of the plugin
+msgid "Find the norwegian library closest to your position"
+msgstr ""
+
+#: WLNearestLibrary.class.php:108
+msgid "Google Maps Geolocation Key"
+msgstr ""
+
+#: WLNearestLibrary.class.php:101
+msgid "Google Maps Key"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/wl-nearest-library/"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.webloft.no/"
+msgstr ""
+
+#: WLNearestLibrary.class.php:80
+msgid "Insufficient privileges"
+msgstr ""
+
+#: WLNearestLibrary.class.php:87
+#, php-format
+msgid "Library location file downloaded OK to %s"
+msgstr ""
+
+#: WLNearestLibrary.class.php:69
+msgid "static"
+msgstr ""
+
+#. Name of the plugin
+#: WLNearestLibrary.class.php:69 WLNearestLibrary.class.php:92
+msgid "WL Nearest Library"
+msgstr ""
+
+#. Author of the plugin
+msgid "WP Hosting"
+msgstr ""

@@ -24,6 +24,7 @@ class WLNearestLibrary {
 
 	public function init () {
                 $this->enqueue_scripts();
+                $this->enqueue_styles();
                 $this->add_shortcodes();
 	}
 
@@ -35,6 +36,10 @@ class WLNearestLibrary {
 
         }
 
+        public function enqueue_styles() {
+            wp_enqueue_style('WLNearestLibraries', plugins_url( 'css/wl-nearest-library.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) . 'css/wl-nearest-library.css'));
+        }
+
         public function enqueue_scripts() {
             $key = @$this->settings['gmapkey']; 
             $geolockey= @$this->settings['geolockey']; 
@@ -42,7 +47,13 @@ class WLNearestLibrary {
             wp_enqueue_script( 'WLgmap', 'https://maps.googleapis.com/maps/api/js?key=' . $key, array(), '5.5' );
 
             wp_register_script('WLNearestLibraries', plugins_url( 'js/nearest-library.js', __FILE__ ), array('jquery'), filemtime( plugin_dir_path( __FILE__ ) . 'js/nearest-library.js'));
-            wp_localize_script('WLNearestLibraries', 'WLNearestLibrarySettings', array('gmapkey'=>$key,'geolockey'=>$geolockey));
+            wp_localize_script('WLNearestLibraries', 'WLNearestLibrarySettings', 
+                array('gmapkey'=>$key,'geolockey'=>$geolockey, 
+                      'homepage'=>__('Homepage','wl-nearest-libraries'),
+                      'email'=>__('E-mail', 'wl-nearest-libraries'),
+                      'phone'=>__('Phone','wl-nearest-libraries')
+                      )
+            );
             wp_enqueue_script('WLNearestLibraries');
         }
       

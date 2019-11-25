@@ -146,7 +146,7 @@ jQuery(document).ready(function() {
         // echo the nearest cities
         //nearestCities = closestCities
         for (index = 0; index < nearestCities.length; ++index) {
-            jQuery('.library_record').append('<div class="first_title"><strong>' + nearestCities[index][2] + '</strong></div><div>' + nearestCities[index][3] + '</div><div>' + nearestCities[index][6] + ' ' + nearestCities[index][7] + '</div><div>tlf: ' + nearestCities[index][8] + '</div><div style="display:none">tlfax: ' + nearestCities[index][9] + '</div><div class="epost">E-post: <a target="_top" href="mailto:' + nearestCities[index][10] + '">' + nearestCities[index][10] + '</a></div><div>Heimeside: <a target="_blank" href="' + nearestCities[index][11] + '">' + nearestCities[index][11] + '</a></div><br/>');
+            jQuery('.library_record').append('<div class="first_title"><strong>' + nearestCities[index][2] + '</strong></div><div>' + nearestCities[index][3] + '</div><div>' + nearestCities[index][6] + ' ' + nearestCities[index][7] + '</div><div>'+  WLNearestLibrarySettings.phone + ': ' + nearestCities[index][8] + '</div><div style="display:none">tlfax: ' + nearestCities[index][9] + '</div><div class="epost">' + WLNearestLibrarySettings.email + ': <a target="_top" href="mailto:' + nearestCities[index][10] + '">' + nearestCities[index][10] + '</a></div><div>' + WLNearestLibrarySettings.homepage + ': <a target="_blank" href="' + nearestCities[index][11] + '">' + nearestCities[index][11] + '</a></div><br/>');
         }
     }
 
