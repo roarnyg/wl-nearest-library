@@ -58,8 +58,8 @@ class WLNearestLibrary {
 		add_options_page(__('static', 'wl-nearest-library'), __('WL Nearest Library','wl-nearest-library'), 'manage_options', 'wl-nearest-library_options',array($this,'toolpage'));
 	}
 	// Helper function for creating an admin notice.
-	public function add_admin_notice($notice) {
-		add_action('admin_notices', function() use ($notice) { echo "<div class='notice notice-info is-dismissible'><p>$notice</p></div>"; });
+	public function add_admin_notice($notice,$type='info') {
+		add_action('admin_notices', function() use ($notice,$type) { echo "<div class='notice notice-$type is-dismissible'><p>$notice</p></div>"; });
 	}
 
 	// This is the main options-page for this plugin. The classes VippsLogin and WooLogin adds more options to this screen just to 
@@ -69,6 +69,13 @@ class WLNearestLibrary {
 			die(__("Insufficient privileges",'wl-nearest-library'));
 		}
 		$options = get_option('wl-nearest-library_options'); 
+                $xmlfile =  $this->getXMLFile();
+                if (!$xmlfile) {
+                    $this->add_admin_notice(__('Could not download the libriaries.xml file containing the locations of libraries. See the error log for details', 'wl-nearest-library'),'error');
+                } else {
+                    $this->add_admin_notice(sprintf(__('Library location file downloaded OK to %s', 'wl-nearest-library'),$xmlfile));
+                }
+
 		?>
 			<div class='wrap'>
 			<h2><?php _e('WL Nearest Library', 'wl-nearest-library'); ?></h2>
@@ -130,11 +137,35 @@ class WLNearestLibrary {
 	public static function uninstall() {
 	}
 
-
-        public function nearest_library_shortcode($attrs,$content) {
+        public function getXMLFile() {
             $uploadinfo = wp_get_upload_dir();
             $basedir = trailingslashit($uploadinfo['basedir']);
-            $pathFile = $basedir . 'libraries.xml';
+            $xmlfile = $basedir . 'libraries.xml';
+            if (file_exists($xmlfile) && (time() - filemtime($xmlfile)) < (3600 * 24 * 14)) {
+                return $xmlfile;
+            }
+            $tmpfile = $basedir . "libraries.tmp.xml";
+            $fullfile = 'http://www.nb.no/baser/bibliotek/eksport/bb-full.xml';
+            $download = wp_remote_get($fullfile);
+            if (is_wp_error($download)) {
+              error_log("Could not download the bb-full.xml libary file: " . $download->get_error_message());
+              if (file_exists($xmlfile)) return $xmlfile;
+              return null;
+            }
+            $content = wp_remote_retrieve_body($download);
+            $ok = file_put_contents($tmpfile,$content);
+            if ($ok) {
+                 rename($tmpfile,$xmlfile);
+            } else {
+                 error_log("Could not write to $xmlfile!");
+            }
+            if (file_exists($xmlfile)) return $xmlfile;
+            return null;
+        }
+
+
+        public function nearest_library_shortcode($attrs,$content) {
+            $pathFile = $this->getXMLFile();
             if (is_file($pathFile) && is_readable($pathFile)) {
                 ob_start();
                 $xml = simplexml_load_file($pathFile);
