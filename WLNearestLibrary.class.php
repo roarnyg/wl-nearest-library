@@ -93,6 +93,8 @@ class WLNearestLibrary {
 
 			<?php do_action('admin_notices'); ?>
 
+<p><?php _e('Use the [google-maps] and [library_shortcode] shortcodes to print out a map and a list of your nearest libraries respectively, after adding google map API keys containing the maps api and the geoloc api. If no key for this is set, the users location will only be queried from the browser', 'wl-nearest-library');?></p>
+
 			<form action='options.php' method='post'>
 			<?php settings_fields('wl-nearest-library_options'); ?>
 			<table class="form-table" style="width:100%">
