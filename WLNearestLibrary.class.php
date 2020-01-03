@@ -197,6 +197,7 @@ class WLNearestLibrary {
 
                 }
                 echo "</div>";
+		echo "<div class='library_record'></div>";
                 return ob_get_clean();
             } else {
               error_log("Could not read libraries.xml file containing positions of norwegian libraries - from $pathFile");
