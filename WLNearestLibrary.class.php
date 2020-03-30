@@ -43,7 +43,7 @@ class WLNearestLibrary {
         public function enqueue_scripts() {
             $key = @$this->settings['gmapkey']; 
             $geolockey= @$this->settings['geolockey']; 
-            //wp_enqueue_script( 'WLgmap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBr36rqZ6Xv97_0yW8kgvza-7_xAKQhvBo' );
+
             wp_enqueue_script( 'WLgmap', 'https://maps.googleapis.com/maps/api/js?key=' . $key, array(), '5.5' );
 
             wp_register_script('WLNearestLibraries', plugins_url( 'js/nearest-library.js', __FILE__ ), array('jquery'), filemtime( plugin_dir_path( __FILE__ ) . 'js/nearest-library.js'));
